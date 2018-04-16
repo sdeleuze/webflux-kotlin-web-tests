@@ -9,6 +9,7 @@ import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest
 import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.test.context.junit4.SpringRunner
 import org.springframework.test.web.reactive.server.WebTestClient
+import org.springframework.test.web.reactive.server.*
 
 @RunWith(SpringRunner::class)
 @WebFluxTest
@@ -26,6 +27,6 @@ class FooControllerTests {
 		client.get().uri("/controller/foo").exchange()
 				.expectStatus().isOk
 				// TODO expectBody + KT-5464 workaround, see https://jira.spring.io/browse/SPR-15692?focusedCommentId=158700#comment-158700
-				.expectBody(String::class.java).returnResult().apply { assertEquals("foo", responseBody) }
+				.expectBody<String>().returnResult().apply { assertEquals("foo", responseBody) }
 	}
 }
