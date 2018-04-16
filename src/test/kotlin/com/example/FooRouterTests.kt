@@ -10,6 +10,7 @@ import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.context.annotation.Import
 import org.springframework.test.context.junit4.SpringRunner
 import org.springframework.test.web.reactive.server.WebTestClient
+import org.springframework.test.web.reactive.server.returnResult
 
 @RunWith(SpringRunner::class)
 @WebFluxTest
@@ -30,7 +31,7 @@ class FooRouterTests {
 				.uri("/router/foo")
 				.exchange()
 				.expectStatus().isOk
-				.expectBody(String::class.java) // TODO Add a expectBody<String>() extension
-					.returnResult().responseBody.apply { assertEquals("foo", this) } // TODO Document or add and extension for .returnResult().responseBody.apply { } as a workaround to expect { }
+				// TODO Document or add and extension for .returnResult().responseBody.apply { } as a workaround to expect { }
+				.returnResult<String>().responseBody.apply { assertEquals("foo", this) }
 	}
 }
