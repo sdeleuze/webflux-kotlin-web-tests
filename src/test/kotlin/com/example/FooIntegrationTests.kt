@@ -23,7 +23,7 @@ class FooIntegrationTests {
 		client.get().uri("/controller/foo").exchange()
 				.expectStatus().isOk
 				// TODO expectBody + KT-5464 workaround, see https://jira.spring.io/browse/SPR-15692?focusedCommentId=158700#comment-158700
-				.returnResult<String>().responseBody.apply { assertEquals("foo", this) }
+				.expectBody(String::class.java).returnResult().apply { assertEquals("foo", responseBody) }
 	}
 
 	@Test
@@ -31,6 +31,6 @@ class FooIntegrationTests {
 		client.get().uri("/router/foo").exchange()
 				.expectStatus().isOk
 				// TODO expectBody + KT-5464 workaround, see https://jira.spring.io/browse/SPR-15692?focusedCommentId=158700#comment-158700
-				.returnResult<String>().responseBody.apply { assertEquals("foo", this) }
+				.expectBody(String::class.java).returnResult().apply { assertEquals("foo", responseBody) }
 	}
 }
