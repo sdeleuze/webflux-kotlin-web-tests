@@ -14,7 +14,7 @@ import org.springframework.test.web.reactive.server.returnResult
 
 @RunWith(SpringRunner::class)
 @WebFluxTest
-@Import(FooRouter::class) // See https://github.com/spring-projects/spring-boot/issues/10683
+@Import(FooRouter::class) // See https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#boot-features-testing-spring-boot-applications-testing-autoconfigured-webflux-tests
 class FooRouterTests {
 
 	@Autowired
