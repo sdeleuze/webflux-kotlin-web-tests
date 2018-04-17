@@ -26,8 +26,7 @@ class FooControllerTests {
 		given(repository.foo()).willReturn("foo")
 		client.get().uri("/controller/foo").exchange()
 				.expectStatus().isOk
-				// TODO expectBody + KT-5464 workaround, see https://jira.spring.io/browse/SPR-15692?focusedCommentId=158700#comment-158700
-				// TODO Lack of suggestion of this extension, see https://youtrack.jetbrains.com/issue/KT-23834
+				// .expectBody<String>().isEqualTo("foo") with Spring Framework 5.O.6
 				.expectBody<String>().returnResult().apply { assertEquals("foo", responseBody) }
 	}
 }
