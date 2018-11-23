@@ -1,6 +1,5 @@
 package com.example
 
-import org.junit.Assert.*
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.BDDMockito.given
@@ -26,7 +25,7 @@ class FooControllerTests {
 		given(repository.foo()).willReturn("foo")
 		client.get().uri("/controller/foo").exchange()
 				.expectStatus().isOk
-				// .expectBody<String>().isEqualTo("foo") with Spring Framework 5.O.6
-				.expectBody<String>().returnResult().apply { assertEquals("foo", responseBody) }
+				.expectBody<String>().isEqualTo("foo")
+
 	}
 }
