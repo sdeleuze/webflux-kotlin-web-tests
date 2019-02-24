@@ -11,8 +11,8 @@ class RouterMockedTest {
 	@Test
 	fun fooTest() {
 		val repository = mockk<FooRepository>()
-		val router = RouterConfiguration().router(repository)
 		every { repository.foo() }  returns "foo"
+		val router = RouterConfiguration().router(repository)
 		val client = WebTestClient.bindToRouterFunction(router).build()
 		client.get()
 				.uri("/router/foo")
