@@ -1,31 +1,24 @@
 package com.example
 
-import org.junit.Test
-import org.junit.runner.RunWith
-import org.mockito.BDDMockito.given
+import com.ninjasquad.springmockk.MockkBean
+import io.mockk.every
+import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest
-import org.springframework.boot.test.mock.mockito.MockBean
-import org.springframework.test.context.junit4.SpringRunner
 import org.springframework.test.web.reactive.server.WebTestClient
 import org.springframework.test.web.reactive.server.*
 
-@RunWith(SpringRunner::class)
 @WebFluxTest
-class FooControllerTests {
+class ControllerWebFluxTest(@Autowired val client: WebTestClient) {
 
-	@Autowired
-	private lateinit var client: WebTestClient
-
-	@MockBean
+	@MockkBean
 	private lateinit var repository: FooRepository
 
 	@Test
 	fun fooTest() {
-		given(repository.foo()).willReturn("foo")
+		every { repository.foo() } returns "foo"
 		client.get().uri("/controller/foo").exchange()
 				.expectStatus().isOk
 				.expectBody<String>().isEqualTo("foo")
-
 	}
 }

@@ -7,5 +7,5 @@ import org.springframework.boot.runApplication
 class WebfluxKotlinWebTestsApplication
 
 fun main(args: Array<String>) {
-    runApplication<WebfluxKotlinWebTestsApplication>(*args)
+	runApplication<WebfluxKotlinWebTestsApplication>(*args)
 }
